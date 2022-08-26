@@ -14,7 +14,7 @@ app.use(logger);
 
 // 首页
 app.get("/", async (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
+  res.sendFile(path.join(__dirname, "./public/index.html"));
 });
 
 // 更新计数
@@ -48,6 +48,10 @@ app.get("/api/wx_openid", async (req, res) => {
     res.send(req.headers["x-wx-openid"]);
   }
 });
+
+app.all('*', async (req, res) => {
+  res.sendFile(path.join(__dirname, './error/404.html'))
+})
 
 const port = process.env.PORT || 80;
 
